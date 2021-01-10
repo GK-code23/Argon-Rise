@@ -1,0 +1,115 @@
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Table -->
+  <div class="row">
+    <div class="col">
+      <div class="card shadow">
+        <div class="card-header border-0">
+          <h3 class="mb-0">Add Question</h3>
+        </div>
+        <div class="table-responsive px-4">
+          <!-- Custom code starts here -->
+          <div class="card-body">
+            <form (ngSubmit)="onAddData(domain.value,Level.value,question.value)">
+              <div class="row">
+                <div class="form-group col-6">
+                  <label for="ccmonth">Domain Type : </label>
+                  <select class="form-control" id="ccmonth" required #domain>
+                    <option>Apptitute</option>
+                    <option>Technical</option>
+                    <option>Verbal</option>
+                  </select>
+                </div>
+
+                <div class="form-group col-6">
+                  <label for="ccmonth">Difficulty Level : </label>
+                  <select class="form-control" id="ccmonth" required #Level>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                Enter The Question :
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"></span>
+                  </div>
+                  <textarea name="Question" placeholder="Enter the Question" class="form-control span6" required
+                    #question></textarea>
+                </div>
+              </div>
+
+              <form #addressForm="ngForm">
+                <section *ngFor="let address of addresses; let i = index;">
+                  <div class="row">
+                    <div class="col-6">
+                      <h6>Option {{i + 1}} :</h6>
+                    </div>
+                    <div class="col-6 text-right">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-7">
+                      <div class="form-group">
+                        <input type="text" class="form-control" [(ngModel)]="address.option"
+                          name="option{{address.option}}" placeholder="Option" />
+                      </div>
+                    </div>
+                    <div class="form-check">
+                      <!-- <label class="form-check-label">
+                        <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value=i
+                          (change)="Onpressed(i)">Answer
+                      </label> -->
+                      <div class="custom-control custom-control-alternative custom-checkbox mb-3">
+                        <div class="row">
+                          <div class="col-sm">
+                            <input class="custom-control-input" id="blankCheckbox" type="checkbox" checked="" value=i
+                              (change)="Onpressed(i)">
+                            <label class="custom-control-label" for="blankCheckbox">Answer</label>
+                          </div>
+                          <div class="col-sm">
+                            <button type="button" class="btn btn-warning btn-sm"
+                              (click)="removeAddress(i)">Delete</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <div class="row-7">
+                  <br>
+                  <button type="button" class="btn btn-primary mb-2" (click)="addAddress()">Add Option</button>
+                </div>
+              </form>
+              <div class="card-footer py-4">
+                <button type="submit" class="btn btn-success">Save</button>
+              </div>
+            </form>
+          </div>
+          <!-- Custom code ends here -->
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
