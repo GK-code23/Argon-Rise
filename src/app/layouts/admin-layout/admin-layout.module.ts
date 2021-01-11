@@ -17,6 +17,7 @@ import { QuestionsComponent } from 'src/app/pages/questions/questions.component'
 import {UploaderComponent} from 'src/app/pages/uploader_Task/uploader/uploader.component'
 import {UploadTaskComponent} from 'src/app/pages/uploader_Task/upload-task/upload-task.component'
 import { FileListComponent } from 'src/app/pages/file-list/file-list.component';
+import { QuestionListComponent } from 'src/app/pages/question-list/question-list.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -38,7 +39,8 @@ import { FileListComponent } from 'src/app/pages/file-list/file-list.component';
     QuestionsComponent,
     UploadTaskComponent,
     UploaderComponent,
-    FileListComponent
+    FileListComponent,
+    QuestionListComponent
   ]
 })
 

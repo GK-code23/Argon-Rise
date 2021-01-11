@@ -79,12 +79,14 @@
                         <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value=i
                           (change)="Onpressed(i)">Answer
                       </label> -->
-                      <div class="custom-control custom-control-alternative custom-checkbox mb-3">
+                      <div class="custom-control  custom-checkbox mb-3">
                         <div class="row">
                           <div class="col-sm">
-                            <input class="custom-control-input " id="blankCheckbox" type="checkbox" checked="" value=i
-                              (change)="Onpressed(i)">
-                            <label class="custom-control-label" for="blankCheckbox">Answer</label>
+                            <label class="form-check-label">
+                              <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value=i
+                                (change)="Onpressed(i)">Answer
+                            </label>
+                            
                           </div>
                           <div class="col-sm">
                             <button type="button" class="btn btn-warning btn-sm"

@@ -3,6 +3,8 @@ import { ROUTES } from '../sidebar/sidebar.component';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { Router } from '@angular/router';
 import {FirebaseService} from '../../services/firebase.service'
+import { AngularFirestore } from '@angular/fire/firestore';
+import {AngularFireAuth} from '@angular/fire/auth';
 
 @Component({
   selector: 'app-navbar',
@@ -13,12 +15,22 @@ export class NavbarComponent implements OnInit {
   public focus;
   public listTitles: any[];
   public location: Location;
-  constructor(location: Location,  private element: ElementRef, private router: Router,public firebaseService : FirebaseService) {
-    this.location = location;
-  }
+  User_info = []
+  constructor(location: Location,  private element: ElementRef, private router: Router,public firebaseService : FirebaseService,
+              public firebaseAuth : AngularFireAuth,public firebaseservice : FirebaseService,
+              private db: AngularFirestore) {
+              this.location = location;
+              }
 
   ngOnInit() {
     this.listTitles = ROUTES.filter(listTitle => listTitle);
+    this.firebaseAuth.currentUser.then((res)=>{
+      var id = res.uid;
+      this.db.firestore.collection("Web_user").doc(id).get().then((variable)=>{
+        this.User_info.push(variable.data())
+      })
+
+  })
   }
   getTitle(){
     var titlee = this.location.prepareExternalUrl(this.location.path());

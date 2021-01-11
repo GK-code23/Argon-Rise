@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FirebaseService} from '../../services/firebase.service'
 import {AngularFirestore} from '@angular/fire/firestore'
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-questions',
   templateUrl: './questions.component.html',
@@ -38,8 +40,22 @@ export class QuestionsComponent{
     }
     console.log(data)
     console.log(this.answer)
-    this.fireStore.collection('Questions').add(data)    
+    var unique = (await (await this.fireStore.collection('Questions').add(data)).get()).id
+    this.fireStore.collection('Questions').doc(unique).update({'id':unique})     
     
+    Swal.fire({
+      title: 'Question Saved Successfully',
+      text: "",
+      icon: 'success',
+      
+      confirmButtonColor: '#3085d6',
+     
+      confirmButtonText: 'Ok'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.reload()
+      }
+    })
   }
   
 
@@ -81,11 +97,5 @@ export class QuestionsComponent{
       this.answer.splice(i,1);
     }
 
-    async navigate(){
-      this.router.navigateByUrl('/questions');
-    }
-
-    async navigate1(){
-      this.router.navigateByUrl('/uploader');
-    }
+   
 }
