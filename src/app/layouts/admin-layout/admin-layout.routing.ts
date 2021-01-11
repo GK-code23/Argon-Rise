@@ -7,6 +7,8 @@ import { UserProfileComponent } from '../../pages/user-profile/user-profile.comp
 import { TablesComponent } from '../../pages/tables/tables.component';
 import { MypageComponent } from 'src/app/pages/mypage/mypage.component';
 import { QuestionsComponent } from 'src/app/pages/questions/questions.component';
+import {UploaderComponent} from 'src/app/pages/uploader_Task/uploader/uploader.component'
+import {FileListComponent} from 'src/app/pages/file-list/file-list.component'
 
 export const AdminLayoutRoutes: Routes = [
     { path: 'dashboard',      component: DashboardComponent },
@@ -14,6 +16,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'tables',         component: TablesComponent },
     { path: 'icons',          component: IconsComponent },
     { path: 'maps',           component: MapsComponent },
-    { path: 'mypage',         component: MypageComponent },
+    { path: 'Files',           component: FileListComponent},
+    { path: 'storage',         component: UploaderComponent},
     { path: 'questions',      component: QuestionsComponent }
 ];

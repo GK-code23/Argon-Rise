@@ -18,6 +18,8 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from 'src/environments/environment';
 
 
+
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -41,7 +43,9 @@ import { environment } from 'src/environments/environment';
   declarations: [
     AppComponent,
     AdminLayoutComponent,
-    AuthLayoutComponent
+    AuthLayoutComponent,
+
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

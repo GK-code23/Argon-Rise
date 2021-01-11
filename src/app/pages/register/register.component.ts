@@ -25,14 +25,15 @@ export class RegisterComponent implements OnInit {
     this.router.navigateByUrl('/address');
   }
 
-  async OnsignUp(name:string,email:string,phone:string,password:string){
+  async OnsignUp(firstname:string,lasttname:string,email:string,phone:string,password:string){
     await this.firebaseService.signup(email,password).catch((error)=>Swal.fire('Email Is Already Registered', " ",'warning'))
     
     if(this.firebaseService.isLoggedIn){
     this.isSignedIn=true
 
-    this.fireStore.collection("Web_user").doc(email).set({
-      "Name":name,
+    this.fireStore.collection("Web_user").doc(this.firebaseService.userid).set({
+      "First_Name":firstname,
+      "Last_Name":lasttname, 
       "Email" : email,
       "Phone" : phone
     })

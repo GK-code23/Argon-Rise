@@ -14,6 +14,9 @@ import { TablesComponent } from '../../pages/tables/tables.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MypageComponent } from 'src/app/pages/mypage/mypage.component';
 import { QuestionsComponent } from 'src/app/pages/questions/questions.component';
+import {UploaderComponent} from 'src/app/pages/uploader_Task/uploader/uploader.component'
+import {UploadTaskComponent} from 'src/app/pages/uploader_Task/upload-task/upload-task.component'
+import { FileListComponent } from 'src/app/pages/file-list/file-list.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -32,7 +35,10 @@ import { QuestionsComponent } from 'src/app/pages/questions/questions.component'
     IconsComponent,
     MapsComponent,
     MypageComponent,
-    QuestionsComponent
+    QuestionsComponent,
+    UploadTaskComponent,
+    UploaderComponent,
+    FileListComponent
   ]
 })
 

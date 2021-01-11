@@ -44,7 +44,15 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
                 </div>
-                <input class="form-control" placeholder="Name" type="text" required #name>
+                <input class="form-control" placeholder="First Name" type="text" required #firstname>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group input-group-alternative mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
+                </div>
+                <input class="form-control" placeholder="Last Name" type="text" required #lastname>
               </div>
             </div>
             <div class="form-group">
@@ -83,7 +91,7 @@
               </div>
             </div>
             <div class="text-center">
-              <button type="button" class="btn btn-primary mt-4" (click)="OnsignUp(name.value,email.value,phone.value,password.value)">Create account</button>
+              <button type="button" class="btn btn-primary mt-4" (click)="OnsignUp(firstname.value,lastname.value,email.value,phone.value,password.value)">Create account</button>
             </div>
           </form>
         </div>
