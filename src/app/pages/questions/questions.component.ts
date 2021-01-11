@@ -15,6 +15,11 @@ export class QuestionsComponent{
 
   
   ngOnInit(): void { 
+    if(localStorage.getItem('user')==null)
+    {
+      this.router.navigateByUrl("/login")
+      console.log("1")
+    }
   } 
 
   public addresses: any[] = [{
@@ -50,8 +55,24 @@ export class QuestionsComponent{
     }
 
     Onpressed(i: number){
-      this.answer.push(i+1);
-      this.answer.sort()
+      const even = (element) => element === i;
+      if(this.answer.some(even)){
+        for( var j = 0; j < this.answer.length; j++){ 
+    
+          if ( this.answer[j] === i) { 
+      
+              this.answer.splice(j, 1); 
+          }
+      
+        }
+      }
+      else{
+      this.answer.push(i);
+      this.answer = this.answer.filter(function(elem, index, self) {
+        return index === self.indexOf(elem);
+      })
+      this.answer.sort()}
+      console.log(this.answer)
     }
 
 

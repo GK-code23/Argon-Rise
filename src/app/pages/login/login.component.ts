@@ -3,6 +3,7 @@ import {FirebaseService} from '../../services/firebase.service'
 import { Router } from '@angular/router';
 import {AngularFirestore} from '@angular/fire/firestore'
 
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -32,9 +33,13 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   async onSignin(email:string,password:string){
-    await this.firebaseService.signup(email,password)
+    await this.firebaseService.signin(email,password).catch((error)=>Swal.fire('Invalid Credentials', " ",'warning'))
     if(this.firebaseService.isLoggedIn)
-    this.isSignedIn=true
+    {
+      this.isSignedIn=true
+      this.router.navigateByUrl("/dashboard")
+    }
+    
   }
 
   handleLogout(){
