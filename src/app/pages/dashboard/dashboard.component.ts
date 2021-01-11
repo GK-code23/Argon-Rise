@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js';
+import { Router } from '@angular/router';
 
 // core components
 import {
@@ -16,6 +17,8 @@ import {
 })
 export class DashboardComponent implements OnInit {
 
+  constructor(private router: Router) { }
+
   public datasets: any;
   public data: any;
   public salesChart;
@@ -23,7 +26,11 @@ export class DashboardComponent implements OnInit {
   public clicked1: boolean = false;
 
   ngOnInit() {
-
+    if(localStorage.getItem('user')!=null)
+    {
+      this.router.navigateByUrl("/login")
+      console.log("1")
+    }
     this.datasets = [
       [0, 20, 10, 30, 15, 40, 20, 60, 60],
       [0, 20, 5, 25, 10, 30, 15, 40, 40]
