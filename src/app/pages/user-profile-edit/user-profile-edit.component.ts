@@ -15,6 +15,8 @@ export class UserProfileEditComponent implements OnInit {
 
   constructor(public firebaseAuth : AngularFireAuth,public firebaseservice : FirebaseService,private router: Router,
     private db: AngularFirestore,private storage: AngularFireStorage) { }
+
+    files: File[] = [];
           userid : string;
           User_info = []
           ngOnInit() {
@@ -68,8 +70,12 @@ export class UserProfileEditComponent implements OnInit {
 
 
 
-          onDrop(file:FileList){
-              
+          onDrop(files: FileList) {
+            for (let i = 0; i < files.length; i++) {
+              this.files.push(files.item(i));
+            }
+            
+            
           }
 
           

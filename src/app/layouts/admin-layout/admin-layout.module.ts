@@ -20,6 +20,7 @@ import { FileListComponent } from 'src/app/pages/file-list/file-list.component';
 import { QuestionListComponent } from 'src/app/pages/question-list/question-list.component';
 import {QuestionEditComponent} from 'src/app/pages/question-edit/question-edit.component';
 import { UserProfileEditComponent } from 'src/app/pages/user-profile-edit/user-profile-edit.component';
+import { ProfilePictureChangeComponent } from 'src/app/pages/user-profile-edit/profile-picture-change/profile-picture-change.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -44,7 +45,8 @@ import { UserProfileEditComponent } from 'src/app/pages/user-profile-edit/user-p
     FileListComponent,
     QuestionListComponent,
     QuestionEditComponent,
-    UserProfileEditComponent
+    UserProfileEditComponent,
+    ProfilePictureChangeComponent
   ]
 })
 

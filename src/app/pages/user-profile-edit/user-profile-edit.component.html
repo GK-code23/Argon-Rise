@@ -49,6 +49,9 @@
                     <div>
                         <input type="file" id="selectedFile" style="display: none;" (change)="onDrop($event.target.files)"/>
                         <input type="button" class="btn btn-success" value="Change Profile Picture" onclick="document.getElementById('selectedFile').click();" />
+                        <div *ngFor="let file of files">
+                            <app-profile-picture-change [file]="file"></app-profile-picture-change>
+                        </div>
                     </div>
                   </div>
                 </div>
