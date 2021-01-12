@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 import {AngularFireAuth} from '@angular/fire/auth';
+import { Router } from '@angular/router';
+import {UserProfileEditComponent} from '../user-profile-edit.component'
 
 @Component({
   selector: 'app-profile-picture-change',
@@ -23,7 +25,8 @@ export class ProfilePictureChangeComponent implements OnInit {
   path_address : string;
  
 
-  constructor(private storage: AngularFireStorage, private db: AngularFirestore,public firebaseAuth : AngularFireAuth) { }
+  constructor(private storage: AngularFireStorage, private db: AngularFirestore,public firebaseAuth : AngularFireAuth,
+    private router: Router) { }
 
   ngOnInit() {
     this.startUpload();
@@ -49,8 +52,15 @@ export class ProfilePictureChangeComponent implements OnInit {
       // The file's download URL
       finalize( async() =>  {
         this.downloadURL = await ref.getDownloadURL().toPromise();
+        this.firebaseAuth.currentUser.then((res)=>{
+          var id = res.uid;
+          this.db.firestore.collection('Profile_Pictures').doc(id).collection("pictures").add( { downloadURL: this.downloadURL, path ,name: this.file.name})
+          this.db.firestore.collection('Web_user').doc(id).update({
+            "Profile_Picture":this.downloadURL
+          })
+         })
         Swal.fire({
-          title: 'File Successfully Uploaded',
+          title: 'Picture Successfully Changed',
           text: "",
           icon: 'success',
           
@@ -60,15 +70,10 @@ export class ProfilePictureChangeComponent implements OnInit {
         }).then((result) => {
           if (result.isConfirmed) {
             
+            this.router.navigateByUrl("/user-profile")
           }
         })
-        this.firebaseAuth.currentUser.then((res)=>{
-          var id = res.uid;
-          this.db.firestore.collection('Profile_Pictures').doc(id).collection("pictures").add( { downloadURL: this.downloadURL, path ,name: this.file.name})
-          this.db.firestore.collection('Web_user').doc(id).update({
-            "Profile_Picture":this.downloadURL
-          })
-      })
+        
          
       }),
     );

@@ -11,18 +11,20 @@ import Swal from 'sweetalert2';
 })
 export class QuestionListComponent implements OnInit {
 
-  constructor(private router: Router,private storage: AngularFireStorage, private db: AngularFirestore) { }
+  constructor(private router: Router,private storage: AngularFireStorage, private db: AngularFirestore) { 
+    if(localStorage.getItem('user')==null)
+    {
+      this.router.navigateByUrl("/login")
+      console.log("1")
+    }
+  }
 
   files: File[] = [];
   storages = [];
   array1 = []
 
   ngOnInit(): void {
-    if(localStorage.getItem('user')==null)
-    {
-      this.router.navigateByUrl("/login")
-      console.log("1")
-    }
+    
 
       this.db.firestore.collection('Questions').get().then((querySnap) =>{
         querySnap.forEach((doc) =>{

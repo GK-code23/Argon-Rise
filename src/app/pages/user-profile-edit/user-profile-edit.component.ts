@@ -14,17 +14,21 @@ import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage
 export class UserProfileEditComponent implements OnInit {
 
   constructor(public firebaseAuth : AngularFireAuth,public firebaseservice : FirebaseService,private router: Router,
-    private db: AngularFirestore,private storage: AngularFireStorage) { }
+    private db: AngularFirestore,private storage: AngularFireStorage) { 
 
+      if(localStorage.getItem('user')==null)
+      {
+      this.router.navigateByUrl("/login")
+      console.log("1")
+      }
+    }
+  
+    
     files: File[] = [];
           userid : string;
           User_info = []
           ngOnInit() {
-          if(localStorage.getItem('user')==null)
-          {
-          this.router.navigateByUrl("/login")
-          console.log("1")
-          }
+          
 
           this.firebaseAuth.currentUser.then((res)=>{
           var id = res.uid;

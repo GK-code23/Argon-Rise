@@ -12,25 +12,23 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class UserProfileComponent implements OnInit {
 
   constructor(public firebaseAuth : AngularFireAuth,public firebaseservice : FirebaseService,private router: Router,
-              private db: AngularFirestore) { }
+              private db: AngularFirestore) {
+                if(localStorage.getItem('user')==null)
+                {
+                  this.router.navigateByUrl("/login");
+                  console.log("1");
+                }
+               }
   userid : string;
   User_info = []
   ngOnInit() {
-    if(localStorage.getItem('user')==null)
-    {
-      this.router.navigateByUrl("/login")
-      console.log("1")
-    }
     
-    this.firebaseAuth.currentUser.then((res)=>{
-        var id = res.uid;
-        this.db.firestore.collection("Web_user").doc(id).get().then((variable)=>{
-          this.User_info.push(variable.data())
-        })
-
+    
+    this.db.firestore.collection("Web_user").doc(localStorage.getItem('user')).get().then((variable)=>{
+      this.User_info.push(variable.data())
     })
 
-    console.log(this.User_info)
+    
     
     
   }

@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'upload-task',
@@ -22,7 +23,7 @@ export class UploadTaskComponent implements OnInit {
   path_address : string;
  
 
-  constructor(private storage: AngularFireStorage, private db: AngularFirestore) { }
+  constructor(private storage: AngularFireStorage, private db: AngularFirestore,private router: Router) { }
 
   ngOnInit() {
     this.startUpload();
@@ -58,7 +59,7 @@ export class UploadTaskComponent implements OnInit {
           confirmButtonText: 'Ok'
         }).then((result) => {
           if (result.isConfirmed) {
-            window.location.reload()
+            this.router.navigateByUrl("/dashboard")
           }
         })
          

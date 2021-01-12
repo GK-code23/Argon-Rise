@@ -8,7 +8,9 @@ declare const google: any;
 })
 export class MapsComponent implements OnInit {
 
-  constructor() { }
+  constructor() { 
+    
+  }
 
   ngOnInit() {
     let map = document.getElementById('map-canvas');

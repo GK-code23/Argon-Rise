@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import {FirebaseService} from '../../services/firebase.service'
 import { AngularFirestore } from '@angular/fire/firestore';
 import {AngularFireAuth} from '@angular/fire/auth';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-navbar',
@@ -24,13 +25,10 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.listTitles = ROUTES.filter(listTitle => listTitle);
-    this.firebaseAuth.currentUser.then((res)=>{
-      var id = res.uid;
-      this.db.firestore.collection("Web_user").doc(id).get().then((variable)=>{
+    console.log(localStorage.getItem('user'))
+    this.db.firestore.collection("Web_user").doc(localStorage.getItem('user')).get().then((variable)=>{
         this.User_info.push(variable.data())
       })
-
-  })
   }
   getTitle(){
     var titlee = this.location.prepareExternalUrl(this.location.path());
@@ -49,6 +47,25 @@ export class NavbarComponent implements OnInit {
 
   Logout(){
     this.firebaseService.logout();
-    this.router.navigateByUrl("/login")
+    Swal.fire({
+      title: 'Do You Want to Log Out',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+        this.router.navigateByUrl("/login")
+      }
+    })
+    
   }
 }

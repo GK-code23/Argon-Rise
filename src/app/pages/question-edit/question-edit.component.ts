@@ -11,18 +11,21 @@ import { Router } from '@angular/router';
 })
 export class QuestionEditComponent implements OnInit {
 
-  constructor(private _Activatedroute:ActivatedRoute,private db: AngularFirestore,private router: Router) { }
+  constructor(private _Activatedroute:ActivatedRoute,private db: AngularFirestore,private router: Router) { 
+
+    if(localStorage.getItem('user')==null)
+    {
+    this.router.navigateByUrl("/login")
+    console.log("1")
+    }
+  }
   id : string
   Values =[]
   Options = []
   public answer: any[]=[]
 
   ngOnInit(): void {
-      if(localStorage.getItem('user')==null)
-      {
-      this.router.navigateByUrl("/login")
-      console.log("1")
-      }
+      
       this.id =  this._Activatedroute.snapshot.paramMap.get("id");
       console.log(this.id)
       this.db.firestore.collection('Questions').doc(this.id).get().then((querySnap) =>{

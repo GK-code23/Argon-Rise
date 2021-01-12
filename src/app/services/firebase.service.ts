@@ -11,7 +11,7 @@ export class FirebaseService {
     await this.firebaseAuth.signInWithEmailAndPassword(email,password)
     .then(res=>{
       this.isLoggedIn = true
-      localStorage.setItem('user',JSON.stringify(res.user))
+      localStorage.setItem('user',res.user.uid)
       this.userid= res.user.uid;
     })
   }

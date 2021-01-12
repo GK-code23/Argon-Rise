@@ -12,16 +12,16 @@ import Swal from 'sweetalert2';
 export class QuestionsComponent{
 
   constructor(private firebaseService : FirebaseService,private fireStore : AngularFirestore,private router: Router) {
-    
-  }
-
-  
-  ngOnInit(): void { 
     if(localStorage.getItem('user')==null)
     {
       this.router.navigateByUrl("/login")
       console.log("1")
     }
+  }
+
+  
+  ngOnInit(): void { 
+    
   } 
 
   public addresses: any[] = [{
@@ -57,7 +57,7 @@ export class QuestionsComponent{
       confirmButtonText: 'Ok'
     }).then((result) => {
       if (result.isConfirmed) {
-        window.location.reload()
+        this.router.navigateByUrl("/question_list")
       }
     })
   
