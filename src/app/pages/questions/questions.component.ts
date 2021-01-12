@@ -31,6 +31,10 @@ export class QuestionsComponent{
   public answer: any[]=[]
 
   async onAddData(domain:string,Level:string,question:string){
+    if(this.answer.length == 0){
+        Swal.fire("Please Select Answer","You need to chose at least one answer","warning")
+    }
+    else{
     let data = {
       'Domain':domain,
       'Level':Level,
@@ -56,6 +60,8 @@ export class QuestionsComponent{
         window.location.reload()
       }
     })
+  
+  }
   }
   
 

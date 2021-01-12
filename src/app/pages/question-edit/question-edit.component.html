@@ -18,11 +18,12 @@
         <div class="table-responsive px-4">
           <!-- Custom code starts here -->
           <div class="card-body">
-            <form (ngSubmit)="onAddData(domain.value,Level.value,question.value)">
+            <form >
+              <section *ngFor="let address of Values; let i = index;">
               <div class="row">
                 <div class="form-group col-6">
                   <label for="ccmonth">Domain Type : </label>
-                  <select class="form-control" id="ccmonth" required #domain>
+                  <select class="form-control" id="ccmonth" value="{{address.Domain}}" required #domain>
                     <option>Apptitute</option>
                     <option>Technical</option>
                     <option>Verbal</option>
@@ -31,7 +32,7 @@
 
                 <div class="form-group col-6">
                   <label for="ccmonth">Difficulty Level : </label>
-                  <select class="form-control" id="ccmonth" required #Level>
+                  <select class="form-control" id="ccmonth" value="{{address.Level}}" required #Level>
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
@@ -52,16 +53,16 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"></span>
                   </div>
-                  <textarea name="Question" placeholder="Enter the Question" class="form-control span6" required
+                  <textarea name="Question" placeholder="Enter the Question" class="form-control span6" value="{{address.Question}}" required
                     #question></textarea>
                 </div>
               </div>
 
               <form #addressForm="ngForm">
-                <section *ngFor="let address of addresses; let i = index;">
+                <section *ngFor="let Option of Options; let j = index;">
                   <div class="row">
                     <div class="col-6">
-                      <h6>Option {{i + 1}} :</h6>
+                      <h6>Option {{j + 1}} :</h6>
                     </div>
                     <div class="col-6 text-right">
                     </div>
@@ -70,8 +71,7 @@
                   <div class="row">
                     <div class="col-7">
                       <div class="form-group">
-                        <input type="text" class="form-control" [(ngModel)]="address.option"
-                          name="option{{address.option}}" placeholder="Option" />
+                        <input type="text" class="form-control" [(ngModel)]="Option.option" name="option{{Option.option}}" value="{{Option.option}}" />
                       </div>
                     </div>
                     <div class="form-check">
@@ -84,13 +84,13 @@
                           <div class="col-sm">
                             <label class="form-check-label">
                               <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value=i
-                                (change)="Onpressed(i)">Answer
+                                (change)="Onpressed(j)">Answer
                             </label>
                             
                           </div>
                           <div class="col-sm">
                             <button type="button" class="btn btn-warning btn-sm"
-                              (click)="removeAddress(i)">Delete</button>
+                              (click)="removeAddress(j)">Delete</button>
                           </div>
                         </div>
                       </div>
@@ -104,8 +104,8 @@
                 </div>
               </form>
               <br>
-                <button type="submit" class="btn btn-success">Save</button>
-              
+                <button type="submit" class="btn btn-success" (click)="onAddData(domain.value,Level.value,question.value)">Save</button>
+              </section>
             </form>
           </div>
           <!-- Custom code ends here -->

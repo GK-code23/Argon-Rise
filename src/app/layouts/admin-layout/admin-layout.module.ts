@@ -18,6 +18,8 @@ import {UploaderComponent} from 'src/app/pages/uploader_Task/uploader/uploader.c
 import {UploadTaskComponent} from 'src/app/pages/uploader_Task/upload-task/upload-task.component'
 import { FileListComponent } from 'src/app/pages/file-list/file-list.component';
 import { QuestionListComponent } from 'src/app/pages/question-list/question-list.component';
+import {QuestionEditComponent} from 'src/app/pages/question-edit/question-edit.component';
+import { UserProfileEditComponent } from 'src/app/pages/user-profile-edit/user-profile-edit.component';
 // import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -40,7 +42,9 @@ import { QuestionListComponent } from 'src/app/pages/question-list/question-list
     UploadTaskComponent,
     UploaderComponent,
     FileListComponent,
-    QuestionListComponent
+    QuestionListComponent,
+    QuestionEditComponent,
+    UserProfileEditComponent
   ]
 })
 

@@ -1,5 +1,5 @@
 <section *ngFor = "let user of User_info">
-<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url(assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url({{user.Profile_Picture}}); background-size: cover; background-position: center top;">
   <!-- Mask -->
   <span class="mask bg-gradient-danger opacity-8"></span>
   <!-- Header container -->
@@ -9,7 +9,7 @@
       <div class="col-lg-7 col-md-10">
         <h1 class="display-2 text-white">Hello {{user.First_Name}}</h1>
         <p class="text-white mt-0 mb-5">This is your profile page. You can see the progress you've made with your work and manage your projects or assigned tasks</p>
-        <a href="#!" class="btn btn-info">Edit profile</a>
+        <a [routerLink]="['/user-profile-edit']" class="btn btn-info">Edit profile</a>
       </div>
     
     </div>
@@ -23,7 +23,7 @@
           <div class="col-lg-3 order-lg-2">
             <div class="card-profile-image">
               <a href="javascript:void(0)">
-                <img src="https://firebasestorage.googleapis.com/v0/b/rise-5eaa3.appspot.com/o/test%2F1610358397925_Passport%20Photo.jpg?alt=media&token=4e0406e6-b381-4e68-aa4c-44a1833e35f5" class="rounded-circle">
+                <img src="{{user.Profile_Picture}}" class="rounded-circle">
               </a>
             </div>
           </div>
@@ -93,13 +93,14 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-username">Username</label>
-                    <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username" value="{{user.First_Name}}.{{user.Last_Name}}">
+                    <input type="text" id="input-username" class="form-control form-control-alternative" placeholder="Username" disabled
+                     value="{{user.Username}}">
                   </div>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6"> 
                   <div class="form-group">
                     <label class="form-control-label" for="input-email">Email address</label>
-                    <input type="email" id="input-email" class="form-control form-control-alternative" placeholder="jesse@example.com" value="{{user.Email}}">
+                    <input type="email" disabled id="input-email" class="form-control form-control-alternative" placeholder="jesse@example.com" value="{{user.Email}}">
                   </div>
                 </div>
               </div>
@@ -107,13 +108,13 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-first-name">First name</label>
-                    <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="First name" value="{{user.First_Name}}">
+                    <input type="text" disabled id="input-first-name" class="form-control form-control-alternative" placeholder="First name" value="{{user.First_Name}}">
                   </div>
                 </div>
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-last-name">Last name</label>
-                    <input type="text" id="input-last-name" class="form-control form-control-alternative" placeholder="Last name" value="{{user.Last_Name}}">
+                    <input type="text" disabled id="input-last-name" class="form-control form-control-alternative" placeholder="Last name" value="{{user.Last_Name}}">
                   </div>
                 </div>
               </div>
