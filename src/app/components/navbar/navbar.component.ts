@@ -59,8 +59,8 @@ export class NavbarComponent implements OnInit {
       if (result.isConfirmed) {
         
         Swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
+          'Logged Out',
+          'You logged out successfully',
           'success'
         )
         this.router.navigateByUrl("/login")
