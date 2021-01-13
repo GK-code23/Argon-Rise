@@ -59,7 +59,7 @@ export class UploadTaskComponent implements OnInit {
           confirmButtonText: 'Ok'
         }).then((result) => {
           if (result.isConfirmed) {
-            this.router.navigateByUrl("/dashboard")
+            window.location.reload()
           }
         })
          

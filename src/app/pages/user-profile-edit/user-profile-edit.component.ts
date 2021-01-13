@@ -30,13 +30,12 @@ export class UserProfileEditComponent implements OnInit {
           ngOnInit() {
           
 
-          this.firebaseAuth.currentUser.then((res)=>{
-          var id = res.uid;
-          this.db.firestore.collection("Web_user").doc(id).get().then((variable)=>{
+          
+          this.db.firestore.collection("Web_user").doc(localStorage.getItem('user')).get().then((variable)=>{
           this.User_info.push(variable.data())
           })
 
-          })
+          
 
           console.log(this.User_info)
 
@@ -45,20 +44,19 @@ export class UserProfileEditComponent implements OnInit {
 
 
           updateData(username:string,email:string,firstname:string,lastname:string){
-            this.firebaseAuth.currentUser.then((res)=>{
-              var id = res.uid;
-              this.db.firestore.collection("Web_user").doc(id).update({
+          
+              this.db.firestore.collection("Web_user").doc(localStorage.getItem('user')).update({
                 "Email":email,
                 "First_Name":firstname,
                 "Last_Name":lastname,
                 "Username":username
               })
     
-              })
+              
 
 
               Swal.fire({
-                title: 'Question Updated Successfully',
+                title: 'Profile Updated Successfully',
                 text: "",
                 icon: 'success',
                 

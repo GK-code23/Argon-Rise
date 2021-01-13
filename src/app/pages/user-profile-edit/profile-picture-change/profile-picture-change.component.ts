@@ -52,13 +52,12 @@ export class ProfilePictureChangeComponent implements OnInit {
       // The file's download URL
       finalize( async() =>  {
         this.downloadURL = await ref.getDownloadURL().toPromise();
-        this.firebaseAuth.currentUser.then((res)=>{
-          var id = res.uid;
-          this.db.firestore.collection('Profile_Pictures').doc(id).collection("pictures").add( { downloadURL: this.downloadURL, path ,name: this.file.name})
-          this.db.firestore.collection('Web_user').doc(id).update({
+        
+          this.db.firestore.collection('Profile_Pictures').doc(localStorage.getItem('user')).collection("pictures").add( { downloadURL: this.downloadURL, path ,name: this.file.name})
+          this.db.firestore.collection('Web_user').doc(localStorage.getItem('user')).update({
             "Profile_Picture":this.downloadURL
           })
-         })
+         
         Swal.fire({
           title: 'Picture Successfully Changed',
           text: "",
@@ -70,7 +69,7 @@ export class ProfilePictureChangeComponent implements OnInit {
         }).then((result) => {
           if (result.isConfirmed) {
             
-            this.router.navigateByUrl("/user-profile")
+            window.location.reload()
           }
         })
         

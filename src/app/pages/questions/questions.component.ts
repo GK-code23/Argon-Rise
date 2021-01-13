@@ -31,8 +31,13 @@ export class QuestionsComponent{
   public answer: any[]=[]
 
   async onAddData(domain:string,Level:string,question:string){
-    if(this.answer.length == 0){
+    if(this.answer.length == 0 || question.length== 0){
+        if(this.answer.length == 0){
         Swal.fire("Please Select Answer","You need to chose at least one answer","warning")
+        }
+        else{
+          Swal.fire("Please Enter Question","You need to enter the question","warning")
+        }
     }
     else{
     let data = {
@@ -57,7 +62,7 @@ export class QuestionsComponent{
       confirmButtonText: 'Ok'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.router.navigateByUrl("/question_list")
+        window.location.reload()
       }
     })
   
