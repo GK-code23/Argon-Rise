@@ -35,7 +35,7 @@ export class ProfilePictureChangeComponent implements OnInit {
   startUpload() {
 
     // The storage path
-    const path = `Profile_Pictures/USER_${localStorage.getItem('user')}/${Date.now()}_${this.file.name}`;
+    const path = `Profile_Pictures/${Date.now()}_${this.file.name}`;
 
     // Reference to storage bucket
     const ref = this.storage.ref(path);
